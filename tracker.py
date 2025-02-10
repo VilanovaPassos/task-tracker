@@ -28,6 +28,9 @@ def get_tasks():
             return json.load(f)
     except:
         return {}
+    
+def delete(id):
+    del tasks[id]
 
 tasks = get_tasks()
 
@@ -36,6 +39,9 @@ if sys.argv[1] not in commands_list:
     print("nao pegou comando")
 elif sys.argv[1] == commands_list[0]:
     add_task(len(tasks) + 1, sys.argv[2])
+    save_tasks()
+elif sys.argv[1] == commands_list[1]:
+    delete(sys.argv[2])
     save_tasks()
 
 print(tasks)    
