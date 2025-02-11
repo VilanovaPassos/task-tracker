@@ -18,8 +18,8 @@ def get_id():
 def add_task(id, description):
     task = {"description": description,
             "status": "To-Do",
-            "createdAt": datetime.now().strftime("%d-%m-%Y"),
-            "updatedAt": datetime.now().strftime("%d-%m-%Y")}
+            "createdAt": datetime.now().strftime("%d-%m-%Y - %H:%M"),
+            "updatedAt": datetime.now().strftime("%d-%m-%Y - %H:%M")}
     
     tasks.update({id: task})
 
@@ -39,6 +39,10 @@ def get_tasks():
 def delete(id):
     del tasks[id]
 
+def update(id, description):
+    tasks[id]["description"] = description
+    tasks[id]["updatedAt"] = datetime.now().strftime("%d-%m-%Y - %H:%M")
+
 tasks = get_tasks()
 
 
@@ -49,6 +53,9 @@ elif sys.argv[1] == commands_list[0]:
     save_tasks()
 elif sys.argv[1] == commands_list[1]:
     delete(sys.argv[2])
+    save_tasks()
+elif sys.argv[1] == commands_list[2]:
+    update(sys.argv[2], sys.argv[3])
     save_tasks()
 
 print(tasks)    
