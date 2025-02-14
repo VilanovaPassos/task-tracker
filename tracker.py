@@ -53,6 +53,13 @@ def list_tasks():
         print(f"ID: {id} | Descricao: {tasks[id]["description"]} | Status: {tasks[id]["status"]} | Created at: {tasks[id]["createdAt"]} | Updated at: {tasks[id]["updatedAt"]}")
         print("---------------------------------------------------------------------------------------------------------------------------------------------------------------")
 
+#mark_in_progress: change the status to "In-Progress"
+def mark_in_progress(id):
+    tasks[id]["status"] = "In-Progress"
+    tasks[id]["updatedAt"] = datetime.now().strftime("%d-%m-%Y - %H:%M")
+
+
+
 #read tasks
 tasks = get_tasks()
 
@@ -70,4 +77,6 @@ elif sys.argv[1] == commands_list[2]:
     save_tasks()
 elif sys.argv[1] == commands_list[3]:
     list_tasks()
-
+elif sys.argv[1] == commands_list[4]:
+    mark_in_progress(sys.argv[2])
+    save_tasks()
