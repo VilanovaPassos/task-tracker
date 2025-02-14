@@ -35,14 +35,17 @@ def get_tasks():
             return json.load(f)
     except:
         return {}
-    
+
+#delete: delete the task with id key   
 def delete(id):
     del tasks[id]
 
+#update: updates the description and updateAt atributes in the task id
 def update(id, description):
     tasks[id]["description"] = description
     tasks[id]["updatedAt"] = datetime.now().strftime("%d-%m-%Y - %H:%M")
 
+#list_task: get the ids creating a list of keys in tasks and print each taks in a for loop 
 def list_tasks():
     ids = tasks.keys()
 
@@ -50,11 +53,11 @@ def list_tasks():
         print(f"ID: {id} | Descricao: {tasks[id]["description"]} | Status: {tasks[id]["status"]} | Created at: {tasks[id]["createdAt"]} | Updated at: {tasks[id]["updatedAt"]}")
         print("---------------------------------------------------------------------------------------------------------------------------------------------------------------")
 
-
+#read tasks
 tasks = get_tasks()
 
 
-if sys.argv[1] not in commands_list:
+if sys.argv[1] not in commands_list: 
     print("nao pegou comando")
 elif sys.argv[1] == commands_list[0]:
     add_task(get_id(), sys.argv[2])
