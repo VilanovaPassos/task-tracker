@@ -43,6 +43,14 @@ def update(id, description):
     tasks[id]["description"] = description
     tasks[id]["updatedAt"] = datetime.now().strftime("%d-%m-%Y - %H:%M")
 
+def list_tasks():
+    ids = tasks.keys()
+
+    for id in ids:
+        print(f"ID: {id} | Descricao: {tasks[id]["description"]} | Status: {tasks[id]["status"]} | Created at: {tasks[id]["createdAt"]} | Updated at: {tasks[id]["updatedAt"]}")
+        print("---------------------------------------------------------------------------------------------------------------------------------------------------------------")
+
+
 tasks = get_tasks()
 
 
@@ -57,5 +65,6 @@ elif sys.argv[1] == commands_list[1]:
 elif sys.argv[1] == commands_list[2]:
     update(sys.argv[2], sys.argv[3])
     save_tasks()
+elif sys.argv[1] == commands_list[3]:
+    list_tasks()
 
-print(tasks)    
