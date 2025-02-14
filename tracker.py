@@ -58,6 +58,10 @@ def mark_in_progress(id):
     tasks[id]["status"] = "In-Progress"
     tasks[id]["updatedAt"] = datetime.now().strftime("%d-%m-%Y - %H:%M")
 
+#mark_in_progress: change the status to "Done"
+def mark_done(id):
+    tasks[id]["status"] = "Done"
+    tasks[id]["updatedAt"] = datetime.now().strftime("%d-%m-%Y - %H:%M")
 
 
 #read tasks
@@ -79,4 +83,7 @@ elif sys.argv[1] == commands_list[3]:
     list_tasks()
 elif sys.argv[1] == commands_list[4]:
     mark_in_progress(sys.argv[2])
+    save_tasks()
+elif sys.argv[1] == commands_list[5]:
+    mark_done(sys.argv[2])
     save_tasks()
