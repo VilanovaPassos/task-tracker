@@ -69,23 +69,32 @@ def mark_done(id):
 #read tasks
 tasks = get_tasks()
 
-
-if sys.argv[1] not in commands_list: 
-    print("nao pegou comando")
-elif sys.argv[1] == commands_list[0]:
-    add_task(get_id(), sys.argv[2])
-    save_tasks()
-elif sys.argv[1] == commands_list[1]:
-    delete(sys.argv[2])
-    save_tasks()
-elif sys.argv[1] == commands_list[2]:
-    update(sys.argv[2], sys.argv[3])
-    save_tasks()
-elif sys.argv[1] == commands_list[3]:
-    list_tasks()
-elif sys.argv[1] == commands_list[4]:
-    mark_in_progress(sys.argv[2])
-    save_tasks()
-elif sys.argv[1] == commands_list[5]:
-    mark_done(sys.argv[2])
-    save_tasks()
+#check if recieve one argument
+if len(sys.argv) > 1:
+    if sys.argv[1] not in commands_list: 
+        print(f"Command not found! Use one of the following commands {commands_list}")
+    elif sys.argv[1] == commands_list[0]:
+        #add
+        add_task(get_id(), sys.argv[2])
+        save_tasks()
+    elif sys.argv[1] == commands_list[1]:
+        #delete
+        delete(sys.argv[2])
+        save_tasks()
+    elif sys.argv[1] == commands_list[2]:
+        #update
+        update(sys.argv[2], sys.argv[3])
+        save_tasks()
+    elif sys.argv[1] == commands_list[3]:
+        #list
+        list_tasks()
+    elif sys.argv[1] == commands_list[4]:
+        #mark-in-progress
+        mark_in_progress(sys.argv[2])
+        save_tasks()
+    elif sys.argv[1] == commands_list[5]:
+        #mark-done
+        mark_done(sys.argv[2])
+        save_tasks()
+else:
+    print(f"Use one of the following commands {commands_list}")
